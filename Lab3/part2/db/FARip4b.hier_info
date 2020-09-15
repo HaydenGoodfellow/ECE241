@@ -1,0 +1,78 @@
+|FARip4b
+SW[0] => SW[0].IN1
+SW[1] => SW[1].IN1
+SW[2] => SW[2].IN1
+SW[3] => SW[3].IN1
+SW[4] => SW[4].IN1
+SW[5] => SW[5].IN1
+SW[6] => SW[6].IN1
+SW[7] => SW[7].IN1
+SW[8] => SW[8].IN1
+LEDR[0] <= FA:u0.s
+LEDR[1] <= FA:u1.s
+LEDR[2] <= FA:u2.s
+LEDR[3] <= FA:u3.s
+LEDR[4] <= <GND>
+LEDR[5] <= <GND>
+LEDR[6] <= <GND>
+LEDR[7] <= <GND>
+LEDR[8] <= <GND>
+LEDR[9] <= FA:u3.cout
+
+
+|FARip4b|FA:u0
+in1 => s.IN0
+in1 => cout.IN0
+in1 => cout.IN0
+in2 => s.IN1
+in2 => cout.IN1
+in2 => cout.IN0
+cin => s.IN1
+cin => cout.IN1
+cin => cout.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FARip4b|FA:u1
+in1 => s.IN0
+in1 => cout.IN0
+in1 => cout.IN0
+in2 => s.IN1
+in2 => cout.IN1
+in2 => cout.IN0
+cin => s.IN1
+cin => cout.IN1
+cin => cout.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FARip4b|FA:u2
+in1 => s.IN0
+in1 => cout.IN0
+in1 => cout.IN0
+in2 => s.IN1
+in2 => cout.IN1
+in2 => cout.IN0
+cin => s.IN1
+cin => cout.IN1
+cin => cout.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|FARip4b|FA:u3
+in1 => s.IN0
+in1 => cout.IN0
+in1 => cout.IN0
+in2 => s.IN1
+in2 => cout.IN1
+in2 => cout.IN0
+cin => s.IN1
+cin => cout.IN1
+cin => cout.IN1
+s <= s.DB_MAX_OUTPUT_PORT_TYPE
+cout <= cout.DB_MAX_OUTPUT_PORT_TYPE
+
+

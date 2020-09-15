@@ -1,0 +1,309 @@
+|MorseEncoder
+SW[0] => Sel[0].IN1
+SW[1] => Sel[1].IN1
+SW[2] => Sel[2].IN1
+KEY[0] => reset.IN13
+KEY[1] => shift.IN13
+LEDR[0] <= subcircuit:s0.port6
+CLOCK_50 => CLOCK_50.IN14
+
+
+|MorseEncoder|mux8to1:m0
+Sel[0] => Decoder0.IN2
+Sel[0] => Decoder1.IN1
+Sel[1] => Decoder0.IN1
+Sel[2] => Decoder0.IN0
+Sel[2] => Decoder1.IN0
+morseCode[0] <= <VCC>
+morseCode[1] <= WideOr4.DB_MAX_OUTPUT_PORT_TYPE
+morseCode[2] <= <VCC>
+morseCode[3] <= WideOr3.DB_MAX_OUTPUT_PORT_TYPE
+morseCode[4] <= Decoder0.DB_MAX_OUTPUT_PORT_TYPE
+morseCode[5] <= Decoder1.DB_MAX_OUTPUT_PORT_TYPE
+morseCode[6] <= morseCode.DB_MAX_OUTPUT_PORT_TYPE
+morseCode[7] <= WideOr2.DB_MAX_OUTPUT_PORT_TYPE
+morseCode[8] <= WideOr1.DB_MAX_OUTPUT_PORT_TYPE
+morseCode[9] <= Decoder0.DB_MAX_OUTPUT_PORT_TYPE
+morseCode[10] <= WideOr0.DB_MAX_OUTPUT_PORT_TYPE
+morseCode[11] <= Decoder0.DB_MAX_OUTPUT_PORT_TYPE
+morseCode[12] <= Decoder0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MorseEncoder|rateDivider:r
+clock => counter[0]~reg0.CLK
+clock => counter[1]~reg0.CLK
+clock => counter[2]~reg0.CLK
+clock => counter[3]~reg0.CLK
+clock => counter[4]~reg0.CLK
+clock => counter[5]~reg0.CLK
+clock => counter[6]~reg0.CLK
+clock => counter[7]~reg0.CLK
+clock => counter[8]~reg0.CLK
+clock => counter[9]~reg0.CLK
+clock => counter[10]~reg0.CLK
+clock => counter[11]~reg0.CLK
+clock => counter[12]~reg0.CLK
+clock => counter[13]~reg0.CLK
+clock => counter[14]~reg0.CLK
+clock => counter[15]~reg0.CLK
+clock => counter[16]~reg0.CLK
+clock => counter[17]~reg0.CLK
+clock => counter[18]~reg0.CLK
+clock => counter[19]~reg0.CLK
+clock => counter[20]~reg0.CLK
+clock => counter[21]~reg0.CLK
+clock => counter[22]~reg0.CLK
+clock => counter[23]~reg0.CLK
+clock => counter[24]~reg0.CLK
+clock => counter[25]~reg0.CLK
+clock => enable~reg0.CLK
+enable <= enable~reg0.DB_MAX_OUTPUT_PORT_TYPE
+counter[0] <= counter[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+counter[1] <= counter[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+counter[2] <= counter[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+counter[3] <= counter[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+counter[4] <= counter[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+counter[5] <= counter[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+counter[6] <= counter[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+counter[7] <= counter[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+counter[8] <= counter[8]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+counter[9] <= counter[9]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+counter[10] <= counter[10]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+counter[11] <= counter[11]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+counter[12] <= counter[12]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+counter[13] <= counter[13]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+counter[14] <= counter[14]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+counter[15] <= counter[15]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+counter[16] <= counter[16]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+counter[17] <= counter[17]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+counter[18] <= counter[18]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+counter[19] <= counter[19]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+counter[20] <= counter[20]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+counter[21] <= counter[21]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+counter[22] <= counter[22]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+counter[23] <= counter[23]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+counter[24] <= counter[24]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+counter[25] <= counter[25]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MorseEncoder|subcircuit:s12
+morse => morse.IN1
+mux0 => mux0.IN1
+shift => shift.IN1
+enable => conn.OUTPUTSELECT
+reset => conn.OUTPUTSELECT
+clock => conn~reg0.CLK
+conn <= conn~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MorseEncoder|subcircuit:s12|mux2to1:m
+x => out.DATAA
+y => out.DATAB
+sel => out.OUTPUTSELECT
+out <= out.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MorseEncoder|subcircuit:s11
+morse => morse.IN1
+mux0 => mux0.IN1
+shift => shift.IN1
+enable => conn.OUTPUTSELECT
+reset => conn.OUTPUTSELECT
+clock => conn~reg0.CLK
+conn <= conn~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MorseEncoder|subcircuit:s11|mux2to1:m
+x => out.DATAA
+y => out.DATAB
+sel => out.OUTPUTSELECT
+out <= out.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MorseEncoder|subcircuit:s10
+morse => morse.IN1
+mux0 => mux0.IN1
+shift => shift.IN1
+enable => conn.OUTPUTSELECT
+reset => conn.OUTPUTSELECT
+clock => conn~reg0.CLK
+conn <= conn~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MorseEncoder|subcircuit:s10|mux2to1:m
+x => out.DATAA
+y => out.DATAB
+sel => out.OUTPUTSELECT
+out <= out.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MorseEncoder|subcircuit:s9
+morse => morse.IN1
+mux0 => mux0.IN1
+shift => shift.IN1
+enable => conn.OUTPUTSELECT
+reset => conn.OUTPUTSELECT
+clock => conn~reg0.CLK
+conn <= conn~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MorseEncoder|subcircuit:s9|mux2to1:m
+x => out.DATAA
+y => out.DATAB
+sel => out.OUTPUTSELECT
+out <= out.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MorseEncoder|subcircuit:s8
+morse => morse.IN1
+mux0 => mux0.IN1
+shift => shift.IN1
+enable => conn.OUTPUTSELECT
+reset => conn.OUTPUTSELECT
+clock => conn~reg0.CLK
+conn <= conn~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MorseEncoder|subcircuit:s8|mux2to1:m
+x => out.DATAA
+y => out.DATAB
+sel => out.OUTPUTSELECT
+out <= out.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MorseEncoder|subcircuit:s7
+morse => morse.IN1
+mux0 => mux0.IN1
+shift => shift.IN1
+enable => conn.OUTPUTSELECT
+reset => conn.OUTPUTSELECT
+clock => conn~reg0.CLK
+conn <= conn~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MorseEncoder|subcircuit:s7|mux2to1:m
+x => out.DATAA
+y => out.DATAB
+sel => out.OUTPUTSELECT
+out <= out.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MorseEncoder|subcircuit:s6
+morse => morse.IN1
+mux0 => mux0.IN1
+shift => shift.IN1
+enable => conn.OUTPUTSELECT
+reset => conn.OUTPUTSELECT
+clock => conn~reg0.CLK
+conn <= conn~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MorseEncoder|subcircuit:s6|mux2to1:m
+x => out.DATAA
+y => out.DATAB
+sel => out.OUTPUTSELECT
+out <= out.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MorseEncoder|subcircuit:s5
+morse => morse.IN1
+mux0 => mux0.IN1
+shift => shift.IN1
+enable => conn.OUTPUTSELECT
+reset => conn.OUTPUTSELECT
+clock => conn~reg0.CLK
+conn <= conn~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MorseEncoder|subcircuit:s5|mux2to1:m
+x => out.DATAA
+y => out.DATAB
+sel => out.OUTPUTSELECT
+out <= out.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MorseEncoder|subcircuit:s4
+morse => morse.IN1
+mux0 => mux0.IN1
+shift => shift.IN1
+enable => conn.OUTPUTSELECT
+reset => conn.OUTPUTSELECT
+clock => conn~reg0.CLK
+conn <= conn~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MorseEncoder|subcircuit:s4|mux2to1:m
+x => out.DATAA
+y => out.DATAB
+sel => out.OUTPUTSELECT
+out <= out.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MorseEncoder|subcircuit:s3
+morse => morse.IN1
+mux0 => mux0.IN1
+shift => shift.IN1
+enable => conn.OUTPUTSELECT
+reset => conn.OUTPUTSELECT
+clock => conn~reg0.CLK
+conn <= conn~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MorseEncoder|subcircuit:s3|mux2to1:m
+x => out.DATAA
+y => out.DATAB
+sel => out.OUTPUTSELECT
+out <= out.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MorseEncoder|subcircuit:s2
+morse => morse.IN1
+mux0 => mux0.IN1
+shift => shift.IN1
+enable => conn.OUTPUTSELECT
+reset => conn.OUTPUTSELECT
+clock => conn~reg0.CLK
+conn <= conn~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MorseEncoder|subcircuit:s2|mux2to1:m
+x => out.DATAA
+y => out.DATAB
+sel => out.OUTPUTSELECT
+out <= out.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MorseEncoder|subcircuit:s1
+morse => morse.IN1
+mux0 => mux0.IN1
+shift => shift.IN1
+enable => conn.OUTPUTSELECT
+reset => conn.OUTPUTSELECT
+clock => conn~reg0.CLK
+conn <= conn~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MorseEncoder|subcircuit:s1|mux2to1:m
+x => out.DATAA
+y => out.DATAB
+sel => out.OUTPUTSELECT
+out <= out.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MorseEncoder|subcircuit:s0
+morse => morse.IN1
+mux0 => mux0.IN1
+shift => shift.IN1
+enable => conn.OUTPUTSELECT
+reset => conn.OUTPUTSELECT
+clock => conn~reg0.CLK
+conn <= conn~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|MorseEncoder|subcircuit:s0|mux2to1:m
+x => out.DATAA
+y => out.DATAB
+sel => out.OUTPUTSELECT
+out <= out.DB_MAX_OUTPUT_PORT_TYPE
+
+

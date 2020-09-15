@@ -1,0 +1,27 @@
+module FARip4b (SW, LEDR);
+	
+	input [8:0] SW;
+	output [9:0] LEDR;
+	wire w1, w2, w3;
+	
+	FA u0 (.in1(SW[4]), .in2(SW[0]), .cin(SW[8]),
+			 .s(LEDR[0]), .cout(w1) );
+			 
+	FA u1 (.in1(SW[5]), .in2(SW[1]), .cin(w1),
+			 .s(LEDR[1]), .cout(w2) );
+			 
+	FA u2 (.in1(SW[6]), .in2(SW[2]), .cin(w2),
+			 .s(LEDR[2]), .cout(w3) );
+			 
+	FA u3 (.in1(SW[7]), .in2(SW[3]), .cin(w3),
+			 .s(LEDR[3]), .cout(LEDR[9]) );
+	
+endmodule
+
+module FA (input in1, in2, cin,
+			  output s, cout);
+	
+	assign s = in1 ^ in2 ^ cin;
+	assign cout = (in1 & in2) | (in1 & cin) | (in2 & cin);
+	
+endmodule 

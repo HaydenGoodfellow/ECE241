@@ -1,0 +1,9 @@
+
+State Machine - |VGASquareDrawer|controlPath:c|currentSt
+Name currentSt.BLK currentSt.DRAW currentSt.St2 currentSt.St0 currentSt.St1 currentSt.St1HOLD 
+currentSt.St1HOLD 0 0 0 0 0 0 
+currentSt.St1 0 0 0 0 1 1 
+currentSt.St0 0 0 0 1 0 1 
+currentSt.St2 0 0 1 0 0 1 
+currentSt.DRAW 0 1 0 0 0 1 
+currentSt.BLK 1 0 0 0 0 1 

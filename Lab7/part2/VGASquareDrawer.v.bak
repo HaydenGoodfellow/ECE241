@@ -1,0 +1,228 @@
+module VGASquareDrawer(	
+		CLOCK_50,						//	On Board 50 MHz
+		SW, 
+		KEY,							   // On Board Keys
+		// The ports below are for the VGA output.  Do not change.
+		VGA_CLK,   						//	VGA Clock
+		VGA_HS,							//	VGA H_SYNC
+		VGA_VS,							//	VGA V_SYNC
+		VGA_BLANK_N,						//	VGA BLANK
+		VGA_SYNC_N,						//	VGA SYNC
+		VGA_R,   						//	VGA Red[9:0]
+		VGA_G,	 						//	VGA Green[9:0]
+		VGA_B   						   //	VGA Blue[9:0]
+	);
+
+	input		    CLOCK_50;				//	50 MHz
+	input	 [3:0] KEY;					
+	input  [9:0] SW
+	output		 VGA_CLK;   				//	VGA Clock
+	output		 VGA_HS;					//	VGA H_SYNC
+	output		 VGA_VS;					//	VGA V_SYNC
+	output		 VGA_BLANK_N;				//	VGA BLANK
+	output		 VGA_SYNC_N;				//	VGA SYNC
+	output [7:0] VGA_R;   				//	VGA Red[7:0] Changed from 10 to 8-bit DAC
+	output [7:0] VGA_G;	 				//	VGA Green[7:0]
+	output [7:0] VGA_B;   				//	VGA Blue[7:0]
+	
+	wire resetn;
+	assign resetn = KEY[0];
+	
+	// Create the colour, x, y and writeEn wires that are inputs to the controller.
+
+	wire [2:0] colour;
+	wire [7:0] x;
+	wire [6:0] y;
+	wire writeEn; 
+
+	// Create an Instance of a VGA controller - there can be only one!
+	// Define the number of colours as well as the initial background
+	// image file (.MIF) for the controller.
+	vga_adapter VGA(
+			.resetn(resetn),
+			.clock(CLOCK_50),
+			.colour(colour),
+			.x(x),
+			.y(y),
+			.plot(writeEn),
+			/* Signals for the DAC to drive the monitor. */
+			.VGA_R(VGA_R),
+			.VGA_G(VGA_G),
+			.VGA_B(VGA_B),
+			.VGA_HS(VGA_HS),
+			.VGA_VS(VGA_VS),
+			.VGA_BLANK(VGA_BLANK_N),
+			.VGA_SYNC(VGA_SYNC_N),
+			.VGA_CLK(VGA_CLK));
+		defparam VGA.RESOLUTION = "160x120";
+		defparam VGA.MONOCHROME = "FALSE";
+		defparam VGA.BITS_PER_COLOUR_CHANNEL = 1;
+		defparam VGA.BACKGROUND_IMAGE = "black.mif";
+			
+	// Put your code here. Your code should produce signals x,y,colour and writeEn
+	// for the VGA controller, in addition to any other functionality your design may require.
+	wire go, clear, plt_key;
+	assign go = ~KEY[3];
+	assign clear = ~KEY[2];
+	assign plt_key = ~KEY[1];
+	assign resetn = KEY[0];
+	
+	wire ld_y, ld_clr, enable_blk, enable_plt;
+	wire ld_x = go;
+	wire [5:0] counter_plt;
+	wire [7:0] counter_X;
+	wire [6:0] counter_Y;
+	
+	datapath d(CLOCK_50, resetn, ld_x, ld_y, ld_clr, 
+				  enable_plt, enable_blk, SW[6:0], SW[9:7], 
+				  x, y, colour, 
+				  counter_plt, counter_X, counter_Y);
+	
+	control c(CLOCK_50, resetn, plt_key, clear, go, 
+	          counter_X, counter_Y, counter_plt,
+				 ld_y, ld_clr, writeEn, enable_plt, enable_blk);
+	
+endmodule
+
+module datapath(input clk, resetn, ld_x, ld_y, ld_clr, enable_plt, enable_blk,
+		input [7:0] datain,
+		input [2:0] clr,
+		output reg [7:0] X,
+		output reg [6:0] Y,
+		output reg [2:0] CLR,
+		output reg [5:0] CounterA,
+		output reg [7:0] CounterX,
+		output reg [6:0] CounterY
+		);
+	reg [6:0] x_ini, y_ini;
+	//loading registers
+	always@(posedge clk)
+	begin
+	if(!resetn)
+	begin
+		X<=8'b0;
+		Y<=7'b0;
+		CLR<= 3'b0;
+		CounterA<= 6'b0;
+		CounterX <= 8'b0;
+		CounterY <= 7'b0;
+	end
+	else
+	begin
+	if (ld_x) begin
+		X<=datain;
+		x_ini <= datain; end
+	if(ld_y) begin
+		Y<=datain;
+		y_ini <= datain; end
+	if(ld_clr)
+		CLR<=clr;
+	if(enable_plt == 1'b1)
+	begin
+		if (CounterA == 6'b10000) CounterA<= 6'b0;
+		else CounterA<=CounterA+1;
+		X <= x_ini + CounterA[1:0];
+		Y <= y_ini + CounterA[3:2];
+	end
+	if(enable_blk)
+	begin
+		if (CounterX == 8'd160 && CounterY!= 7'd120) begin
+			CounterX <= 8'b0;
+			CounterY <= CounterY +1;
+		end
+		else
+			CounterX <= CounterX+1;
+		X<= CounterX;
+		Y<= CounterY;
+		CLR <= 3'b0;
+	end
+		
+	end
+	end
+
+	//adding location to x and y 
+endmodule
+
+module control(input clk, resetn, plt_key, clear, go, 
+		input [7:0] CounterX,
+		input [6:0] CounterY,
+		input [5:0] counter_plt, 
+		output reg ld_y, ld_clr, plot, enable_plt, enable_blk);
+	
+	reg [2:0] current_state, next_state;
+
+	localparam S0 = 3'b0,
+	S1= 3'b001,
+	S1_WAIT = 3'b010,
+	S2= 3'b011,
+	DRAW= 3'b100,
+	BLK= 3'b101;
+
+	//next state logic
+	always@(*)
+	begin: state_table
+		case(current_state)
+			S0: begin
+			if (go == 1'b1) next_state = S1;
+			if (go ==1'b0) next_state = S0; 
+			end
+			S1: next_state = go ? S1: S1_WAIT;
+			S1_WAIT: begin
+				if (clear == 1'b1) next_state = BLK;
+				if (plt_key == 1'b1) next_state = S2;
+				else if (resetn == 1'b0) next_state = S1_WAIT;
+			end
+			S2: next_state = DRAW;
+			DRAW: begin
+				if (counter_plt <= 6'd15) next_state = DRAW;
+				else next_state= S1_WAIT;
+				end
+			BLK : begin
+				//next_state = (CounterX == 8'd160 & CounterY == 7'd120) ? S1_WAIT : BLK;
+				if(CounterX != 8'd160 & CounterY != 7'd120) next_state = BLK;
+				else next_state = S1_WAIT;
+			end
+			default: next_state= S1_WAIT;
+		endcase
+	end 
+
+	//control signals
+	always@(*)
+		begin: enable_signals
+		//reset all enable signals
+		//ld_x =1'b0;
+		ld_y = 1'b0;
+		ld_clr= 1'b0; 
+		plot = 1'b0; 
+		enable_plt = 1'b0;
+		enable_blk = 1'b0;
+		
+		case(current_state)
+			//S1: ld_x = 1'b1;
+			S2: begin
+				ld_y= 1'b1;
+				ld_clr= 1'b1;
+			end
+			DRAW: begin
+				plot = 1'b1;
+				enable_plt = 1'b1;
+				ld_clr = 1'b1;
+			end
+			BLK: begin
+				plot = 1'b1;
+				enable_blk = 1'b1;
+			end
+		endcase
+	end
+
+	// current_state registers
+   always@(posedge clk)
+    	begin: state_FFs
+        	if(!resetn)
+            		current_state <= S1_WAIT;
+			else if (clear)
+					current_state <= BLK;
+        	else
+            	current_state <= next_state;
+    	end 
+endmodule 

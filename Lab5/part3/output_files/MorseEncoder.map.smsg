@@ -1,0 +1,1 @@
+Warning (10268): Verilog HDL information at MorseEncoder.v(56): always construct contains both blocking and non-blocking assignments File: C:/Users/Hayde/Documents/UofT Engineering/Third Year/ECE241/Labs/Lab 5/part3/MorseEncoder.v Line: 56

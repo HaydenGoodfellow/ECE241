@@ -1,0 +1,31 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/Hayde/Documents/UofT Engineering/Third Year/ECE241/Labs/Lab 2/part3Quartus
+vHexDecoder
+!s110 1569268940
+!i10b 1
+!s100 Z3]K?CjjdVEb<QBV=6g>L0
+IlVEl]a[2:cDe15E31<[<C0
+VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1569267040
+8HexDecoder.v
+FHexDecoder.v
+L0 1
+OV;L;10.5b;63
+r1
+!s85 0
+31
+!s108 1569268940.000000
+!s107 HexDecoder.v|
+!s90 -reportprogress|300|HexDecoder.v|
+!i113 1
+tCvgOpt 0
+n@hex@decoder

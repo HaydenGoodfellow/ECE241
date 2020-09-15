@@ -1,0 +1,9 @@
+
+State Machine - |SquareAnimation|controlPath:c|currentSt
+Name currentSt.RESET currentSt.UPDATE currentSt.ERASE currentSt.WAIT currentSt.DRAW currentSt.CLEAR 
+currentSt.CLEAR 0 0 0 0 0 0 
+currentSt.DRAW 0 0 0 0 1 1 
+currentSt.WAIT 0 0 0 1 0 1 
+currentSt.ERASE 0 0 1 0 0 1 
+currentSt.UPDATE 0 1 0 0 0 1 
+currentSt.RESET 1 0 0 0 0 1 

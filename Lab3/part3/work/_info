@@ -1,0 +1,94 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/Hayde/Documents/UofT Engineering/Third Year/ECE241/Labs/Lab 3/part3
+vALU
+Z1 !s110 1569992961
+!i10b 1
+!s100 k[<l9Ve2zX8@bKSjoZoFO3
+IA09hH_2Qo8mB@O7?dk@8Y1
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z3 w1569991594
+Z4 8ALU.v
+Z5 FALU.v
+L0 1
+Z6 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z7 !s108 1569992961.000000
+Z8 !s107 ALU.v|
+Z9 !s90 -reportprogress|300|ALU.v|
+!i113 1
+Z10 tCvgOpt 0
+n@a@l@u
+vFA
+R1
+!i10b 1
+!s100 ZIR3m=?;9IS;[zke]olei0
+IBbaiWV^bmkRmEd_6nJ3fS0
+R2
+R0
+R3
+R4
+R5
+L0 78
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+n@f@a
+vFARip4b
+R1
+!i10b 1
+!s100 8@C5OcG<NG1:6eAD?z>=^2
+Ihe48m[h>>NMP^g06JX_9;2
+R2
+R0
+R3
+R4
+R5
+L0 62
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+n@f@a@rip4b
+vHexDecoder
+R1
+!i10b 1
+!s100 k@5C;KNniz0U0^>o;58df1
+IoH02o948KGkc<No?JBEBF3
+R2
+R0
+R3
+R4
+R5
+L0 84
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+n@hex@decoder

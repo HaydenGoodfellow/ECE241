@@ -1,0 +1,227 @@
+|RotatingReg8b
+SW[0] => data[0].IN1
+SW[1] => data[1].IN1
+SW[2] => data[2].IN1
+SW[3] => data[3].IN1
+SW[4] => data[4].IN1
+SW[5] => data[5].IN1
+SW[6] => data[6].IN1
+SW[7] => data[7].IN1
+SW[8] => ~NO_FANOUT~
+SW[9] => reset.IN8
+KEY[0] => clk.IN7
+KEY[1] => parLoad.IN8
+KEY[2] => rotRight.IN8
+KEY[3] => ASRclk.IN0
+LEDR[0] <= Mux_DFF:m0.port7
+LEDR[1] <= Mux_DFF:m1.port7
+LEDR[2] <= Mux_DFF:m2.port7
+LEDR[3] <= Mux_DFF:m3.port7
+LEDR[4] <= Mux_DFF:m4.port7
+LEDR[5] <= Mux_DFF:m5.port7
+LEDR[6] <= Mux_DFF:m6.port7
+LEDR[7] <= Mux_DFF:m7.port7
+LEDR[8] <= clk.DB_MAX_OUTPUT_PORT_TYPE
+LEDR[9] <= parLoad.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|RotatingReg8b|Mux_DFF:m0
+data => ~NO_FANOUT~
+parLoad => parLoad.IN1
+loadLeft => loadLeft.IN1
+right => right.IN1
+left => left.IN1
+clk => ff1.CLK
+reset => ff1.ACLR
+Q <= <GND>
+
+
+|RotatingReg8b|Mux_DFF:m0|Mux2to1:mux0
+x => m.DATAA
+y => m.DATAB
+s => m.OUTPUTSELECT
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|RotatingReg8b|Mux_DFF:m0|Mux2to1:mux1
+x => m.DATAA
+y => m.DATAB
+s => m.OUTPUTSELECT
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|RotatingReg8b|Mux_DFF:m1
+data => ~NO_FANOUT~
+parLoad => parLoad.IN1
+loadLeft => loadLeft.IN1
+right => right.IN1
+left => left.IN1
+clk => ff1.CLK
+reset => ff1.ACLR
+Q <= <GND>
+
+
+|RotatingReg8b|Mux_DFF:m1|Mux2to1:mux0
+x => m.DATAA
+y => m.DATAB
+s => m.OUTPUTSELECT
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|RotatingReg8b|Mux_DFF:m1|Mux2to1:mux1
+x => m.DATAA
+y => m.DATAB
+s => m.OUTPUTSELECT
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|RotatingReg8b|Mux_DFF:m2
+data => ~NO_FANOUT~
+parLoad => parLoad.IN1
+loadLeft => loadLeft.IN1
+right => right.IN1
+left => left.IN1
+clk => ff1.CLK
+reset => ff1.ACLR
+Q <= <GND>
+
+
+|RotatingReg8b|Mux_DFF:m2|Mux2to1:mux0
+x => m.DATAA
+y => m.DATAB
+s => m.OUTPUTSELECT
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|RotatingReg8b|Mux_DFF:m2|Mux2to1:mux1
+x => m.DATAA
+y => m.DATAB
+s => m.OUTPUTSELECT
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|RotatingReg8b|Mux_DFF:m3
+data => ~NO_FANOUT~
+parLoad => parLoad.IN1
+loadLeft => loadLeft.IN1
+right => right.IN1
+left => left.IN1
+clk => ff1.CLK
+reset => ff1.ACLR
+Q <= <GND>
+
+
+|RotatingReg8b|Mux_DFF:m3|Mux2to1:mux0
+x => m.DATAA
+y => m.DATAB
+s => m.OUTPUTSELECT
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|RotatingReg8b|Mux_DFF:m3|Mux2to1:mux1
+x => m.DATAA
+y => m.DATAB
+s => m.OUTPUTSELECT
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|RotatingReg8b|Mux_DFF:m4
+data => ~NO_FANOUT~
+parLoad => parLoad.IN1
+loadLeft => loadLeft.IN1
+right => right.IN1
+left => left.IN1
+clk => ff1.CLK
+reset => ff1.ACLR
+Q <= <GND>
+
+
+|RotatingReg8b|Mux_DFF:m4|Mux2to1:mux0
+x => m.DATAA
+y => m.DATAB
+s => m.OUTPUTSELECT
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|RotatingReg8b|Mux_DFF:m4|Mux2to1:mux1
+x => m.DATAA
+y => m.DATAB
+s => m.OUTPUTSELECT
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|RotatingReg8b|Mux_DFF:m5
+data => ~NO_FANOUT~
+parLoad => parLoad.IN1
+loadLeft => loadLeft.IN1
+right => right.IN1
+left => left.IN1
+clk => ff1.CLK
+reset => ff1.ACLR
+Q <= <GND>
+
+
+|RotatingReg8b|Mux_DFF:m5|Mux2to1:mux0
+x => m.DATAA
+y => m.DATAB
+s => m.OUTPUTSELECT
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|RotatingReg8b|Mux_DFF:m5|Mux2to1:mux1
+x => m.DATAA
+y => m.DATAB
+s => m.OUTPUTSELECT
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|RotatingReg8b|Mux_DFF:m6
+data => ~NO_FANOUT~
+parLoad => parLoad.IN1
+loadLeft => loadLeft.IN1
+right => right.IN1
+left => left.IN1
+clk => ff1.CLK
+reset => ff1.ACLR
+Q <= <GND>
+
+
+|RotatingReg8b|Mux_DFF:m6|Mux2to1:mux0
+x => m.DATAA
+y => m.DATAB
+s => m.OUTPUTSELECT
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|RotatingReg8b|Mux_DFF:m6|Mux2to1:mux1
+x => m.DATAA
+y => m.DATAB
+s => m.OUTPUTSELECT
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|RotatingReg8b|Mux_DFF:m7
+data => ~NO_FANOUT~
+parLoad => parLoad.IN1
+loadLeft => loadLeft.IN1
+right => right.IN1
+left => left.IN1
+clk => ff1.CLK
+reset => ff1.ACLR
+Q <= <GND>
+
+
+|RotatingReg8b|Mux_DFF:m7|Mux2to1:mux0
+x => m.DATAA
+y => m.DATAB
+s => m.OUTPUTSELECT
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|RotatingReg8b|Mux_DFF:m7|Mux2to1:mux1
+x => m.DATAA
+y => m.DATAB
+s => m.OUTPUTSELECT
+m <= m.DB_MAX_OUTPUT_PORT_TYPE
+
+
