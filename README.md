@@ -1,2 +1,2 @@
 # ECE241
-Projects from a second-year engineering course, ECE241 (Written in Verilog)
+Projects from a second-year course on digital logic (Written in Verilog)
